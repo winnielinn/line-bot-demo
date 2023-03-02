@@ -2,8 +2,8 @@
 import { middleware, MiddlewareConfig, WebhookEvent } from '@line/bot-sdk';
 import express, { Application, Request, Response } from 'express';
 import * as dotenv from 'dotenv';
-import { Logger } from './util/logger';
-import { textEventHandler } from './handlers/text-event-handlers';
+import Logger from './util/logger';
+import textEventHandler from './handlers/text-event-handlers';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();

@@ -6,9 +6,9 @@ import {
   TextMessage,
 } from '@line/bot-sdk';
 import * as dotenv from 'dotenv';
-import { Logger } from '../util/logger';
-import { menuMessage } from '../messages/flex-message';
-import { welcomeMessage } from '../messages/text-message';
+import Logger from '../util/logger';
+import menuMessage from '../messages/flex-message';
+import welcomeMessage from '../messages/text-message';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -25,7 +25,7 @@ const clientConfig: ClientConfig = {
 const client = new Client(clientConfig);
 
 // Function handler to receive the text.
-export const textEventHandler = async (
+const textEventHandler = async (
   event: WebhookEvent,
 ): Promise<MessageAPIResponseBase | undefined> => {
   // Process all variables here.
@@ -63,3 +63,5 @@ export const textEventHandler = async (
     }
   }
 };
+
+export default textEventHandler;
