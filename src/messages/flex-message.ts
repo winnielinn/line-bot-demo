@@ -9,8 +9,7 @@ const menuImage: FlexImage = {
   action: {
     type: 'uri',
     label: 'Browse',
-    // TODO: 替換成 github
-    uri: 'http://linecorp.com/',
+    uri: 'https://github.com/winnielinn/joke-generator-line-bot',
   },
 };
 
@@ -59,8 +58,7 @@ const menuOptions: FlexBox = {
       action: {
         type: 'uri',
         label: '回饋表單',
-        // TODO: 改為 Google 表單
-        uri: 'http://linecorp.com',
+        uri: 'https://forms.gle/wA4deoc3fH4dXsVS8',
       },
     },
   ],
