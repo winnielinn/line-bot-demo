@@ -50,7 +50,7 @@ app.post('/webhook', async (req: Request, res: Response): Promise<Response> => {
         await textEventHandler(event);
       } catch (err: unknown) {
         if (err instanceof Error) {
-          console.error(err);
+          logger.error(err);
         }
 
         // Return an error message.

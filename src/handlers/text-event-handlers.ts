@@ -40,14 +40,15 @@ const textEventHandler = async (
 
   // when user join bot
   if (event.type === 'follow') {
-    return await client.replyMessage(replyToken, [welcomeMessage]);
+    await client.replyMessage(replyToken, [welcomeMessage]);
+    return;
   }
 
   // Reply to the user.
   if (event.type === 'message') {
     const { message } = event;
     switch (message.type) {
-      case 'text':
+      case 'text': {
         const { text }: TextMessage = message;
         logger.info('text', text);
         if (text === '隨機中文笑話') {
@@ -55,11 +56,12 @@ const textEventHandler = async (
         } else if (text === '隨機英文笑話') {
           logger.info('English');
         } else {
-          return await client.replyMessage(replyToken, menuMessage);
+          await client.replyMessage(replyToken, menuMessage);
         }
         break;
+      }
       default:
-        return await client.replyMessage(replyToken, menuMessage);
+        await client.replyMessage(replyToken, menuMessage);
     }
   }
 };
