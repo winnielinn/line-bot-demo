@@ -64,7 +64,6 @@ const menuOptions: FlexBox = {
   ],
 };
 
-// eslint-disable-next-line import/prefer-default-export
 const menuMessage: FlexMessage = {
   type: 'flex',
   altText: 'This is a joke menu.',
