@@ -3,7 +3,7 @@ import { middleware, MiddlewareConfig, WebhookEvent } from '@line/bot-sdk';
 import express, { Application, Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 import Logger from './util/logger';
-import textEventHandler from './handlers/text-event-handlers';
+import eventHandler from './handlers/event-handlers';
 import mongoose from './database/mongoose';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -47,7 +47,7 @@ app.post('/webhook', async (req: Request, res: Response): Promise<Response> => {
     // eslint-disable-next-line consistent-return
     events.map(async (event: WebhookEvent) => {
       try {
-        await textEventHandler(event);
+        await eventHandler(event);
       } catch (err: unknown) {
         if (err instanceof Error) {
           logger.error(err);

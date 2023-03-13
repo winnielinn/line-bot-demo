@@ -9,6 +9,7 @@ import * as dotenv from 'dotenv';
 import Logger from '../util/logger';
 import menuMessage from '../messages/flex-message';
 import welcomeMessage from '../messages/text-message';
+import getEnglishJokes from './text-handler';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -25,9 +26,7 @@ const clientConfig: ClientConfig = {
 const client = new Client(clientConfig);
 
 // Function handler to receive the text.
-const textEventHandler = async (
-  event: WebhookEvent,
-): Promise<MessageAPIResponseBase | undefined> => {
+const eventHandler = async (event: WebhookEvent): Promise<MessageAPIResponseBase | undefined> => {
   // Process all variables here.
   if (event.type !== 'message' && event.type !== 'follow') {
     return;
@@ -54,7 +53,8 @@ const textEventHandler = async (
         if (text === '隨機中文笑話') {
           logger.info('中文');
         } else if (text === '隨機英文笑話') {
-          logger.info('English');
+          const englishJoke = (await getEnglishJokes()) as TextMessage;
+          await client.replyMessage(replyToken, englishJoke);
         } else {
           await client.replyMessage(replyToken, menuMessage);
         }
@@ -66,4 +66,4 @@ const textEventHandler = async (
   }
 };
 
-export default textEventHandler;
+export default eventHandler;
