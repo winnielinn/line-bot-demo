@@ -15,6 +15,9 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'import'],
+  settings: {
+    'import/core-modules': ['mongoose', '@typescript/mongoose', 'node-fetch'],
+  },
   rules: {
     'import/extensions': [
       'error',
