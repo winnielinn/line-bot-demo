@@ -4,7 +4,7 @@ import express, { Application, Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 import Logger from './util/logger';
 import eventHandler from './handlers/event-handlers';
-import mongoose from './database/mongoose';
+import connectToDatabase from './database/mongoose';
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 
 // Create a new Express application.
 const app: Application = express();
-mongoose();
+connectToDatabase();
 
 // Register the LINE middleware.
 // eslint-disable-next-line max-len
