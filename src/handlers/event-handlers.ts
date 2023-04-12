@@ -7,7 +7,7 @@ import {
 } from '@line/bot-sdk';
 import * as dotenv from 'dotenv';
 
-import Logger from '../util/logger';
+import Logger from '../utils/logger';
 import menuMessage from '../messages/flex-message';
 import welcomeMessage from '../messages/text-message';
 import { getEnglishJokes, getChineseJokes } from './text-handler';

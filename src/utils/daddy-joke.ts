@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import Logger from './logger';
 
-const logger = Logger.getLogger('text-message');
+const logger = Logger.getLogger('daddy-joke.ts');
 
 async function generateEngilshJoke() {
   try {
