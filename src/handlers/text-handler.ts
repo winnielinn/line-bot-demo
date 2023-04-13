@@ -1,6 +1,6 @@
-import ChineseJoke from '../models/chinese-joke';
-import generateEngilshJoke from '../util/daddy-joke';
-import Logger from '../util/logger';
+import generateChineseJoke from '../utils/chinese-joke';
+import generateEngilshJoke from '../utils/daddy-joke';
+import Logger from '../utils/logger';
 
 const logger = Logger.getLogger('text-handler');
 
@@ -22,13 +22,9 @@ async function getEnglishJokes() {
 async function getChineseJokes() {
   let reply = '';
   try {
-    const rawJoke = await ChineseJoke.aggregate([{ $sample: { size: 1 } }]);
-    if (!rawJoke) {
-      reply = 'OMG 現在突然沒有笑話提供了捏 🙈\n歡迎發 PR 來擴充笑話庫呀 📤';
-    }
-    const chineseJoke = rawJoke[0];
+    const chineseJoke = await generateChineseJoke();
     reply = chineseJoke.answer !== ''
-      ? `請問${chineseJoke.description}\n${chineseJoke.answer}`
+      ? `Q: ${chineseJoke.description}\nA: ${chineseJoke.answer}`
       : `${chineseJoke.description}`;
   } catch (err) {
     logger.error(err);

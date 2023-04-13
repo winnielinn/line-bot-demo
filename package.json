@@ -1,5 +1,5 @@
 {
-  "name": "line-bot-practice",
+  "name": "joke-generator-line-bot",
   "version": "1.0.0",
   "description": "",
   "main": "/dist/index.js",
